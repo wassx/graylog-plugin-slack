@@ -123,12 +123,19 @@ public class SlackAlarmCallback extends SlackPluginBase implements AlarmCallback
     }
 
     public String buildMessage(Stream stream, AlertCondition.CheckResult result) {
-        String graylogUri = configuration.getString(CK_GRAYLOG2_URL);
+//        String graylogUri = configuration.getString(CK_GRAYLOG2_URL);
+        String thirdPartyUri = configuration.getString(CK_THIRD_PARTY_URL);
         boolean notifyChannel = configuration.getBoolean(CK_NOTIFY_CHANNEL);
 
         String titleLink;
-        if (!isNullOrEmpty(graylogUri)) {
-            titleLink = "<" + buildStreamLink(graylogUri, stream) + "|" + stream.getTitle() + ">";
+//        if (!isNullOrEmpty(graylogUri)) {
+//            titleLink = "<" + buildStreamLink(graylogUri, stream) + "|" + stream.getTitle() + ">";
+//        } else {
+//            titleLink = "_" + stream.getTitle() + "_";
+//        }
+
+        if (!isNullOrEmpty(thirdPartyUri)) {
+            titleLink = "<" + buildStreamLink(thirdPartyUri, stream) + "|Quickbuild>";
         } else {
             titleLink = "_" + stream.getTitle() + "_";
         }

@@ -24,6 +24,7 @@ public class SlackPluginBase {
     public static final String CK_ICON_URL = "icon_url";
     public static final String CK_ICON_EMOJI = "icon_emoji";
     public static final String CK_GRAYLOG2_URL = "graylog2_url";
+    public static final String CK_THIRD_PARTY_URL = "thirdpartyy_url";
     public static final String CK_PROXY_ADDRESS = "proxy_address";
     public static final String CK_COLOR = "color";
     public static final String CK_FIELDS = "custom_fields";
@@ -88,6 +89,11 @@ public class SlackPluginBase {
                 ConfigurationField.Optional.OPTIONAL)
         );
         configurationRequest.addField(new TextField(
+                CK_THIRD_PARTY_URL, "Third Party URL", null,
+                "URL to your third party application (qb) to use in your alarm notification.",
+                ConfigurationField.Optional.OPTIONAL)
+        );
+        configurationRequest.addField(new TextField(
                 CK_PROXY_ADDRESS, "Proxy", null,
                 "Please insert the proxy information in the follwoing format: <ProxyAddress>:<Port>",
                 ConfigurationField.Optional.OPTIONAL)
@@ -117,6 +123,7 @@ public class SlackPluginBase {
         checkUri(configuration, CK_PROXY_ADDRESS);
         checkUri(configuration, CK_ICON_URL);
         checkUri(configuration, CK_GRAYLOG2_URL);
+        checkUri(configuration, CK_THIRD_PARTY_URL);
     }
 
     private static boolean isValidUriScheme(URI uri, String... validSchemes) {
